@@ -31,13 +31,13 @@ public class KursController {
                               @RequestParam(required = false) String  stopienStudiow,
                               @RequestParam(required = false) String  wydzial,
                               @RequestParam(required = false) String  jezykStudiow,
-                              @RequestParam(required = false) String  formaZajec,
+                              @RequestParam(required = false, name = "formaZajec") String[]  formyZajec,
                               @RequestParam(required = false) String  formaZaliczenia,
                               @RequestParam(required = false) Integer ects,
                               @RequestParam(required = false) String  kierunek,
                               @RequestParam(required = false) String  cyklKsztalcenia
                               ){
-        return  kursService.getKursySearch(trybStudiow,stopienStudiow,formaZaliczenia,wydzial,jezykStudiow,formaZajec,ects,kierunek,cyklKsztalcenia);
+        return  kursService.getKursySearch(trybStudiow,stopienStudiow,formaZaliczenia,wydzial,jezykStudiow,formyZajec,ects,kierunek,cyklKsztalcenia);
     }
 
     @GetMapping("kursy  /{id}")

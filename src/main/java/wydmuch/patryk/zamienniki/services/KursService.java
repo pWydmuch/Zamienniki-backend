@@ -18,10 +18,10 @@ public interface KursService {
    Kurs getKurs(Long id);
    List<Kurs> getKursySearch(String trybStudiow,
                                      String stopienStudiow,
-                                     String formaZaliczenia,
+                                     String  formaZaliczenia,
                                      String wydzial,
                                      String jezykStudiow,
-                                     String formyZajec,
+                                     String[]  formyZajec,
                                      Integer ects,
                                      String kierunek,
                                      String cyklKsztalcenia);

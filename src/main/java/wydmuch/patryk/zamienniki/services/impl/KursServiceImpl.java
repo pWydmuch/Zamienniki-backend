@@ -37,10 +37,10 @@ public class KursServiceImpl  implements KursService {
     @Override
     public List<Kurs> getKursySearch(String trybStudiow,
                                      String stopienStudiow,
-                                     String formaZaliczenia,
+                                     String  formaZaliczenia,
                                      String wydzial,
                                      String jezykStudiow,
-                                     String formyZajec,
+                                     String[] formyZajec,
                                      Integer ects,
                                      String kierunek,
                                      String cyklKsztalcenia) {
@@ -54,15 +54,41 @@ public class KursServiceImpl  implements KursService {
         if(formaZaliczenia != null) kurs.setFormaZaliczenia(FormaZaliczenia.valueOf(formaZaliczenia.toUpperCase()));
         if(kierunek!= null) kurs.setKierunek(kierunek);
         if(cyklKsztalcenia != null)  kurs.setCyklKsztalcenia(cyklKsztalcenia);
-        kursy =  kursRepository.findAll(Example.of(kurs));
-
+        ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("formaZajec").withIgnoreNullValues();
+        kursy =  kursRepository.findAll(Example.of(kurs,matcher));
+        System.out.println(Example.of(kurs,matcher));
+        System.out.println(ects);
+        System.out.println(formyZajec);
+        System.out.println(kursy);
         if(ects != null) {
             kursy = kursy.stream().filter(k -> k.getECTS() >= ects).collect(Collectors.toList());
+        }
+
+        if(formyZajec != null && formyZajec.length>0) {
+            List<String> formyList = Arrays.asList(formyZajec);
+            kursy = kursy.
+                    stream()
+                    .filter(k -> KursServiceImpl.checkIfContains(k,formyList))
+                    .collect(Collectors.toList());
         }
 
         return kursy;
     }
 
+    public static boolean checkIfContains(Kurs kurs, List<String> formy){
+        List<FormaZajec> kursFormy = kurs.getFormaZajec();
+        boolean result = false;
+        loop:
+        for(FormaZajec formaKurs: kursFormy){
+            for(String formaUser: formy){
+                if(formaKurs.equals(FormaZajec.valueOf(formaUser))){
+                    result = true;
+                    break loop;
+                }
+            }
+        }
+        return result;
+    }
 
     @Override
     public List<String> getKierunki() {

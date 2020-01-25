@@ -25,7 +25,7 @@ public class Kurs { //Moze lepiej nazwac to kurs
 
     String kierunek;
 
-    Boolean czyWGrupie;
+    Boolean czyGrupa;
 
     @Enumerated(EnumType.STRING)
     TrybStudiow trybStudiow;
@@ -39,9 +39,11 @@ public class Kurs { //Moze lepiej nazwac to kurs
     @Enumerated(EnumType.STRING)
     JezykStudiow jezykStudiow;
 
-
+    @ElementCollection(targetClass = FormaZajec.class)
+//    @JoinTable(name = "kurs_forma_zajec")
+//    @Column(name = "interest", nullable = false)
     @Enumerated(EnumType.STRING)
-    FormaZajec formaZajec;
+    List<FormaZajec> formaZajec;
 
     @Enumerated(EnumType.STRING)
     FormaZaliczenia formaZaliczenia;
@@ -143,20 +145,22 @@ public class Kurs { //Moze lepiej nazwac to kurs
         this.kierunek = kierunek;
     }
 
-    public Boolean getCzyWGrupie() {
-        return czyWGrupie;
+
+
+    public Boolean getCzyGrupa() {
+        return czyGrupa;
     }
 
-    public void setCzyWGrupie(Boolean czyWGrupie) {
-        this.czyWGrupie = czyWGrupie;
+    public void setCzyGrupa(Boolean czyGrupa) {
+        this.czyGrupa = czyGrupa;
     }
 
-    public FormaZajec getFormaZajec() {
-        return formaZajec;
-    }
-
-    public void setFormaZajec(FormaZajec formaZajec) {
+    public void setFormaZajec(List<FormaZajec> formaZajec) {
         this.formaZajec = formaZajec;
+    }
+
+    public List<FormaZajec> getFormaZajec() {
+        return formaZajec;
     }
 
     @Override
@@ -169,7 +173,7 @@ public class Kurs { //Moze lepiej nazwac to kurs
                 ", ECTS=" + ECTS +
                 ", cyklKsztalcenia='" + cyklKsztalcenia + '\'' +
                 ", kierunek='" + kierunek + '\'' +
-                ", czyWGrupie=" + czyWGrupie +
+                ", czyGrupa=" + czyGrupa +
                 ", trybStudiow=" + trybStudiow +
                 ", stopienStudiow=" + stopienStudiow +
                 ", wydzial=" + wydzial +
