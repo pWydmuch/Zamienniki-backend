@@ -40,7 +40,7 @@ public class KursController {
         return  kursService.getKursySearch(trybStudiow,stopienStudiow,formaZaliczenia,wydzial,jezykStudiow,formyZajec,ects,kierunek,cyklKsztalcenia);
     }
 
-    @GetMapping("kursy  /{id}")
+    @GetMapping("kursy/{id}")
     public Kurs getkurs(@PathVariable Long id){
         return kursService.getKurs(id);
     }

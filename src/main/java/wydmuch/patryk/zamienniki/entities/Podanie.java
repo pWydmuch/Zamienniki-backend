@@ -3,7 +3,7 @@ package wydmuch.patryk.zamienniki.entities;
 import wydmuch.patryk.zamienniki.entities.kursEnums.StatusOpinii;
 
 import javax.persistence.*;
-import java.util.Set;
+import java.util.List;
 
 @Entity
 @Table(name = "podania")
@@ -13,13 +13,18 @@ public class Podanie {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @OneToOne
-    @JoinColumn(name="zamiennik")
-    private Kurs zamiennik;
 
     @OneToOne
     @JoinColumn(name ="zamieniany")
     private Kurs zamieniany;
+
+    @ManyToMany
+    @JoinTable(name="podania_zamienniki",
+            joinColumns = { @JoinColumn(name = "podanie_id") },
+            inverseJoinColumns = { @JoinColumn(name = "zamiennik_id")}
+    )
+    private List<Kurs> zamienniki;
+
 
     @Enumerated(EnumType.STRING)
     private StatusOpinii status;
@@ -40,12 +45,12 @@ public class Podanie {
         this.id = id;
     }
 
-    public Kurs getZamiennik() {
-        return zamiennik;
+    public List<Kurs> getZamienniki() {
+        return zamienniki;
     }
 
-    public void setZamiennik(Kurs zamiennik) {
-        this.zamiennik = zamiennik;
+    public void setZamienniki(List<Kurs> zamienniki) {
+        this.zamienniki = zamienniki;
     }
 
     public Kurs getZamieniany() {

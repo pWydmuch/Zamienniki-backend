@@ -56,10 +56,6 @@ public class KursServiceImpl  implements KursService {
         if(cyklKsztalcenia != null)  kurs.setCyklKsztalcenia(cyklKsztalcenia);
         ExampleMatcher matcher = ExampleMatcher.matching().withIgnorePaths("formaZajec").withIgnoreNullValues();
         kursy =  kursRepository.findAll(Example.of(kurs,matcher));
-        System.out.println(Example.of(kurs,matcher));
-        System.out.println(ects);
-        System.out.println(formyZajec);
-        System.out.println(kursy);
         if(ects != null) {
             kursy = kursy.stream().filter(k -> k.getECTS() >= ects).collect(Collectors.toList());
         }

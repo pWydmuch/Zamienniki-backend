@@ -40,7 +40,9 @@ public class Kurs { //Moze lepiej nazwac to kurs
     JezykStudiow jezykStudiow;
 
     @ElementCollection(targetClass = FormaZajec.class)
-//    @JoinTable(name = "kurs_forma_zajec")
+    @JoinTable(
+            name = "kursy_formy_zajec"
+    )
 //    @Column(name = "interest", nullable = false)
     @Enumerated(EnumType.STRING)
     List<FormaZajec> formaZajec;

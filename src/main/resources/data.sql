@@ -7,7 +7,7 @@ INSERT INTO kursy(id,kod,kierunek,nazwa,link_karty,ects, cykl_ksztalcenia, czy_g
                (null,'INP001031L','INŻYNIERIA BIOMEDYCZNA','WPROWADZENIE DO PROGRAMOWANIA','https://storage.googleapis.com/staging.conv3rt3r.appspot.com/wprowadzenie_do_programowania.pdf',2,'2018/2019',FALSE,'ZALICZENIE','POLSKI','PIERWSZY','STACJONARNE','W11'),
                (null,'INZ001519Wcl','Informatyka','Podstawy Programowania','https://storage.googleapis.com/staging.conv3rt3r.appspot.com/Podstawy_programowania.pdf',2,'2018/2019',TRUE,'ZALICZENIE','POLSKI','PIERWSZY','STACJONARNE','W8');
 
-INSERT INTO kurs_forma_zajec(kurs_id,forma_zajec)
+INSERT INTO kursy_formy_zajec(kurs_id,forma_zajec)
         VALUES (1,'WYKLAD'),
                (1,'CWICZENIA'),
                (2,'WYKLAD'),
@@ -25,7 +25,17 @@ INSERT INTO studenci(nr_index, imie,nazwisko)
                (24242,'Jacek', 'Szary'),
                (25242,'Monika', 'Słomiana');
 
-INSERT INTO podania(id,zamiennik,zamieniany, status,uzasadnienie_podania,uzasadnienie_opinii,student )
-        VALUES (null,6,7,'NIEROZPATRZONE','Kurs nie został zaliczony, a nie ma go w następnym cyklu kształcenia',null,23222 ),
-         (null,2,3,'NIEROZPATRZONE','Kurs nie został zaliczony, a nie ma go w następnym cyklu kształcenia',null,25242 ),
-         (null,1,2,'NIEROZPATRZONE','Kurs nie został zaliczony, a nie ma go w następnym cyklu kształcenia',null,21211 );
+INSERT INTO podania(id,zamieniany, status,uzasadnienie_podania,uzasadnienie_opinii,student )
+        VALUES (null,7,'NIEROZPATRZONE','Kurs nie został zaliczony, a nie ma go w następnym cyklu kształcenia',null,23222 ),
+         (null,3,'NIEROZPATRZONE','Kurs nie został zaliczony, a nie ma go w następnym cyklu kształcenia',null,25242 ),
+         (null,2,'NIEROZPATRZONE','Kurs nie został zaliczony, a nie ma go w następnym cyklu kształcenia',null,21211 ),
+         (null,5,'NIEROZPATRZONE','Kurs nie został zaliczony, a nie ma go w następnym cyklu kształcenia',null,21211 ),
+         (null,6,'NIEROZPATRZONE','Kurs nie został zaliczony, a nie ma go w następnym cyklu kształcenia',null,24242 );
+
+INSERT INTO podania_zamienniki(podanie_id, zamiennik_id)
+        VALUES (2,2),
+               (3,1),
+               (4,3),
+               (1,6),
+               (1,3),
+               (5,7);
