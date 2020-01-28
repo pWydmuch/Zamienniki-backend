@@ -1,9 +1,12 @@
 package wydmuch.patryk.zamienniki.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "przedmioty")
+@Table(name = "przedmioty")
+@Entity
 public class Przedmiot {
 
     @Id
@@ -17,6 +20,7 @@ public class Przedmiot {
     @OneToMany(mappedBy = "przedmiot", cascade = CascadeType.REMOVE)
     List<Kurs> kursy;
 
+    @JsonIgnore
     @ManyToOne
     PlanStudiow planStudiow;
 

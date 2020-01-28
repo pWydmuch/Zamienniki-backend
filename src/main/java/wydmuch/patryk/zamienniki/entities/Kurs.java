@@ -1,5 +1,6 @@
 package wydmuch.patryk.zamienniki.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import wydmuch.patryk.zamienniki.entities.kursEnums.*;
 import javax.persistence.*;
 import java.util.List;
@@ -16,6 +17,7 @@ public class Kurs { //Moze lepiej nazwac to kurs
     String kod;
 
 
+    @JsonIgnore
     @ManyToOne
     Przedmiot przedmiot;
 

@@ -8,7 +8,8 @@ import wydmuch.patryk.zamienniki.entities.kursEnums.Wydzial;
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "plany_studiow")
+@Table(name = "plany_studiow" )
+@Entity
 public class PlanStudiow {
 
     @Id
@@ -25,6 +26,8 @@ public class PlanStudiow {
     Wydzial wydzial;
 
     String kierunek;
+
+
 
     @Enumerated(EnumType.STRING)
     JezykStudiow jezykStudiow;

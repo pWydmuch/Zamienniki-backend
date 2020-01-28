@@ -1,11 +1,13 @@
 package wydmuch.patryk.zamienniki.entities;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import wydmuch.patryk.zamienniki.entities.kursEnums.TytulNaukowy;
 
 import javax.persistence.*;
 import java.util.List;
 
-@Entity(name = "opiniujacy")
+@Table(name = "opiniujacy")
+@Entity
 public class Opiniujacy {
 
     @Id
@@ -15,8 +17,10 @@ public class Opiniujacy {
     private String imie;
     private String nazwisko;
 
+    @Enumerated(EnumType.STRING)
     private TytulNaukowy tytulNaukowy;
 
+    @JsonIgnore
     @OneToMany(mappedBy = "opiniujacy")
     List<Podanie> podania;
 

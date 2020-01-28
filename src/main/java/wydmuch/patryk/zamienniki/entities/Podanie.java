@@ -72,8 +72,13 @@ public class Podanie {
     }
 
 
+    public Opiniujacy getOpiniujacy() {
+        return opiniujacy;
+    }
 
-
+    public void setOpiniujacy(Opiniujacy opiniujacy) {
+        this.opiniujacy = opiniujacy;
+    }
 
     public Student getStudent() {
         return student;

@@ -2,6 +2,7 @@ package wydmuch.patryk.zamienniki.controllers;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
+import wydmuch.patryk.zamienniki.dto.PodanieDto;
 import wydmuch.patryk.zamienniki.entities.Podanie;
 import wydmuch.patryk.zamienniki.services.PodanieService;
 
@@ -22,18 +23,18 @@ public class PodanieController {
     }
 
     @GetMapping("")
-    public List<Podanie> getPodania(){
+    public List<PodanieDto> getPodania(){
         return  podanieService.getPodania();
     }
 
     @GetMapping("/{id}")
-    public Podanie getPodanie(@PathVariable Long id){
+    public PodanieDto getPodanie(@PathVariable Long id){
         return podanieService.getPodanie(id);
     }
 
     @PutMapping("/{id}")
-    public Podanie updatePodanie(@PathVariable Long id, @RequestBody Podanie podanieDetails){
-        return podanieService.updatePodanie(id,podanieDetails);
+    public PodanieDto updatePodanie(@PathVariable Long id, @RequestBody PodanieDto podanieDetailsDto){
+        return podanieService.updatePodanie(id,podanieDetailsDto);
     }
 
 }
