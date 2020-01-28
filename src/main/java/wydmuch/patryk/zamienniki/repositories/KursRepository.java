@@ -13,11 +13,11 @@ import java.util.List;
 @Repository
 public interface KursRepository extends JpaRepository<Kurs,Long>, QueryByExampleExecutor<Kurs> {
 
-    @Query("SELECT  DISTINCT k.kierunek FROM Kurs k")
-     List<String> findKierunki();
-
-    @Query("SELECT DISTINCT k.cyklKsztalcenia FROM Kurs k")
-    List<String> findCykle();
+//    @Query("SELECT  DISTINCT k.kierunek FROM Kurs k")
+//     List<String> findKierunki();
+//
+//    @Query("SELECT DISTINCT k.cyklKsztalcenia FROM Kurs k")
+//    List<String> findCykle();
 
 //    @Query(value = "SELECT k FROM kursy k  k.trybStudiow = :tryb" +
 //            " and k.stopienStudiow = :stopien " +

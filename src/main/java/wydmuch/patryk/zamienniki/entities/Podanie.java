@@ -25,6 +25,8 @@ public class Podanie {
     )
     private List<Kurs> zamienniki;
 
+    @ManyToOne
+    Opiniujacy opiniujacy;
 
     @Enumerated(EnumType.STRING)
     private StatusOpinii status;

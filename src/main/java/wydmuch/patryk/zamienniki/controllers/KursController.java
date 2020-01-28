@@ -40,15 +40,15 @@ public class KursController {
         return  kursService.getKursySearch(trybStudiow,stopienStudiow,formaZaliczenia,wydzial,jezykStudiow,formyZajec,ects,kierunek,cyklKsztalcenia);
     }
 
-    @GetMapping("kursy/{id}")
-    public Kurs getkurs(@PathVariable Long id){
-        return kursService.getKurs(id);
-    }
+//    @GetMapping("kursy/{id}")
+//    public Kurs getkurs(@PathVariable Long id){
+//        return kursService.getKurs(id);
+//    }
 
-    @GetMapping("kierunki")
-    List<String> getKierunki() {return kursService.getKierunki();}
-
-    @GetMapping("cykle")
-    List<String> getCykle() {return kursService.getCykle();}
+//    @GetMapping("kierunki")
+//    List<String> getKierunki() {return kursService.getKierunki();}
+//
+//    @GetMapping("cykle")
+//    List<String> getCykle() {return kursService.getCykle();}
 
 }

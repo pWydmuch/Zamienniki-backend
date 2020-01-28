@@ -15,35 +15,20 @@ public class Kurs { //Moze lepiej nazwac to kurs
     @Column(unique = true) // czy kod jest naprawde unikalny
     String kod;
 
-    String nazwa;
 
-    String linkKarty;
+    @ManyToOne
+    Przedmiot przedmiot;
 
     Integer ECTS;
 
-    String cyklKsztalcenia; // jako string? moze jako data, albo zrobic jakis regexp yyyy/yyyy
-
-    String kierunek;
 
     Boolean czyGrupa;
 
-    @Enumerated(EnumType.STRING)
-    TrybStudiow trybStudiow;
-
-    @Enumerated(EnumType.STRING)
-    StopienStudiow stopienStudiow;
-
-    @Enumerated(EnumType.STRING)
-    Wydzial wydzial;
-
-    @Enumerated(EnumType.STRING)
-    JezykStudiow jezykStudiow;
 
     @ElementCollection(targetClass = FormaZajec.class)
     @JoinTable(
             name = "kursy_formy_zajec"
     )
-//    @Column(name = "interest", nullable = false)
     @Enumerated(EnumType.STRING)
     List<FormaZajec> formaZajec;
 
@@ -66,21 +51,6 @@ public class Kurs { //Moze lepiej nazwac to kurs
         this.kod = kod;
     }
 
-    public String getNazwa() {
-        return nazwa;
-    }
-
-    public void setNazwa(String nazwa) {
-        this.nazwa = nazwa;
-    }
-
-    public String getLinkKarty() {
-        return linkKarty;
-    }
-
-    public void setLinkKarty(String linkKarty) {
-        this.linkKarty = linkKarty;
-    }
 
     public Integer getECTS() {
         return ECTS;
@@ -88,46 +58,6 @@ public class Kurs { //Moze lepiej nazwac to kurs
 
     public void setECTS(Integer ECTS) {
         this.ECTS = ECTS;
-    }
-
-    public String getCyklKsztalcenia() {
-        return cyklKsztalcenia;
-    }
-
-    public void setCyklKsztalcenia(String cyklKsztalcenia) {
-        this.cyklKsztalcenia = cyklKsztalcenia;
-    }
-
-    public TrybStudiow getTrybStudiow() {
-        return trybStudiow;
-    }
-
-    public void setTrybStudiow(TrybStudiow trybStudiow) {
-        this.trybStudiow = trybStudiow;
-    }
-
-    public StopienStudiow getStopienStudiow() {
-        return stopienStudiow;
-    }
-
-    public void setStopienStudiow(StopienStudiow stopienStudiow) {
-        this.stopienStudiow = stopienStudiow;
-    }
-
-    public Wydzial getWydzial() {
-        return wydzial;
-    }
-
-    public void setWydzial(Wydzial wydzial) {
-        this.wydzial = wydzial;
-    }
-
-    public JezykStudiow getJezykStudiow() {
-        return jezykStudiow;
-    }
-
-    public void setJezykStudiow(JezykStudiow jezykStudiow) {
-        this.jezykStudiow = jezykStudiow;
     }
 
 
@@ -138,16 +68,6 @@ public class Kurs { //Moze lepiej nazwac to kurs
     public void setFormaZaliczenia(FormaZaliczenia formaZaliczenia) {
         this.formaZaliczenia = formaZaliczenia;
     }
-
-    public String getKierunek() {
-        return kierunek;
-    }
-
-    public void setKierunek(String kierunek) {
-        this.kierunek = kierunek;
-    }
-
-
 
     public Boolean getCzyGrupa() {
         return czyGrupa;
@@ -165,21 +85,20 @@ public class Kurs { //Moze lepiej nazwac to kurs
         return formaZajec;
     }
 
+    public Przedmiot getPrzedmiot() {
+        return przedmiot;
+    }
+
+    public void setPrzedmiot(Przedmiot przedmiot) {
+        this.przedmiot = przedmiot;
+    }
+
     @Override
     public String toString() {
         return "Kurs{" +
                 "id=" + id +
                 ", kod='" + kod + '\'' +
-                ", nazwa='" + nazwa + '\'' +
-                ", linkKarty='" + linkKarty + '\'' +
                 ", ECTS=" + ECTS +
-                ", cyklKsztalcenia='" + cyklKsztalcenia + '\'' +
-                ", kierunek='" + kierunek + '\'' +
-                ", czyGrupa=" + czyGrupa +
-                ", trybStudiow=" + trybStudiow +
-                ", stopienStudiow=" + stopienStudiow +
-                ", wydzial=" + wydzial +
-                ", jezykStudiow=" + jezykStudiow +
                 ", formaZajec=" + formaZajec +
                 ", formaZaliczenia=" + formaZaliczenia +
                 '}';
