@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import org.mockito.exceptions.verification.SmartNullPointerException;
 import wydmuch.patryk.zamienniki.entities.Kurs;
 import wydmuch.patryk.zamienniki.entities.kursEnums.FormaZajec;
+import wydmuch.patryk.zamienniki.entities.kursEnums.FormaZaliczenia;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -13,9 +14,9 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class KursServiceImplTest {
 
-    @Test
-    void filterKursy() {
-    }
+
+
+    //DLA checkIfKursContainsFormaZajec()
 
     @Test
     void doesEmptyKursContainFormaZajec() {
@@ -82,6 +83,98 @@ class KursServiceImplTest {
         assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs,Arrays.asList(FormaZajec.SEMINARIUM)));
     }
 
+    // dla filterKursyMinimalEcts()
+    @Test
+    void doesFilteredKursyContainOnlyKursyWitmMaxEctsBeforeFiltrationWhenEctsMax(){
+        List<Kurs> kursyBefore = new ArrayList<>();
+        Kurs kurs1 = new Kurs();
+        kurs1.setECTS(5);
+        kursyBefore.add(kurs1) ;
+        Kurs kurs2 = new Kurs();
+        kurs2.setECTS(30);
+        kursyBefore.add(kurs2);
+        Kurs kurs3 = new Kurs();
+        kurs3.setECTS(0);
+        kursyBefore.add(kurs3);
+        List<Kurs> kursyAfter = KursServiceImpl.filterKursyMinimalEcts(kursyBefore,30);
+        assertEquals(kursyAfter.size(),1);
+    }
+    @Test
+    void doesFilteredKursyContainAllKursyWhenEctsSmallerOrEqualThanAny(){
+        List<Kurs> kursyBefore = new ArrayList<>();
+        Kurs kurs1 = new Kurs();
+        kurs1.setECTS(5);
+        kursyBefore.add(kurs1) ;
+        Kurs kurs2 = new Kurs();
+        kurs2.setECTS(7);
+        kursyBefore.add(kurs2);
+        Kurs kurs3 = new Kurs();
+        kurs3.setECTS(9);
+        kursyBefore.add(kurs3);
+        List<Kurs> kursyAfter = KursServiceImpl.filterKursyMinimalEcts(kursyBefore,5);
+        assertEquals(kursyAfter.size(),kursyBefore.size());
+    }
+    @Test
+    void doesFilteredKursyAreEmptyWhenEctsGreaterThanAny(){
+        List<Kurs> kursyBefore = new ArrayList<>();
+        Kurs kurs1 = new Kurs();
+        kurs1.setECTS(5);
+        kursyBefore.add(kurs1) ;
+        Kurs kurs2 = new Kurs();
+        kurs2.setECTS(7);
+        kursyBefore.add(kurs2);
+        Kurs kurs3 = new Kurs();
+        kurs3.setECTS(9);
+        kursyBefore.add(kurs3);
+        List<Kurs> kursyAfter = KursServiceImpl.filterKursyMinimalEcts(kursyBefore,12);
+        assertEquals(kursyAfter.size(),0);
+    }
 
+    //Dla filterKursyByFormaZaliczenia()
 
+    @Test
+    void doesFilteredKursyContainAllKursyWhenKursyWithSameFormaZaliczenia(){
+        List<Kurs> kursyBefore = new ArrayList<>();
+        Kurs kurs1 = new Kurs();
+        kurs1.setFormaZaliczenia(FormaZaliczenia.EGZAMIN);
+        kursyBefore.add(kurs1) ;
+        Kurs kurs2 = new Kurs();
+        kurs2.setFormaZaliczenia(FormaZaliczenia.EGZAMIN);
+        kursyBefore.add(kurs2);
+        Kurs kurs3 = new Kurs();
+        kurs3.setFormaZaliczenia(FormaZaliczenia.EGZAMIN);
+        kursyBefore.add(kurs3);
+        List<Kurs> kursyAfter = KursServiceImpl.filterKursyByFormaZaliczenia(kursyBefore,FormaZaliczenia.EGZAMIN);
+        assertEquals(kursyAfter.size(),kursyBefore.size());
+    }
+    @Test
+    void doesFilteredKursyContainOnlyKursyWithSameFormaZaliczenia(){
+        List<Kurs> kursyBefore = new ArrayList<>();
+        Kurs kurs1 = new Kurs();
+        kurs1.setFormaZaliczenia(FormaZaliczenia.EGZAMIN);
+        kursyBefore.add(kurs1) ;
+        Kurs kurs2 = new Kurs();
+        kurs2.setFormaZaliczenia(FormaZaliczenia.ZALICZENIE);
+        kursyBefore.add(kurs2);
+        Kurs kurs3 = new Kurs();
+        kurs3.setFormaZaliczenia(FormaZaliczenia.EGZAMIN);
+        kursyBefore.add(kurs3);
+        List<Kurs> kursyAfter = KursServiceImpl.filterKursyByFormaZaliczenia(kursyBefore,FormaZaliczenia.ZALICZENIE);
+        assertEquals(kursyAfter.size(),1);
+    }
+    @Test
+    void doesFilteredKursyEmptyWithDifferentFormaZaliczenia(){
+        List<Kurs> kursyBefore = new ArrayList<>();
+        Kurs kurs1 = new Kurs();
+        kurs1.setFormaZaliczenia(FormaZaliczenia.EGZAMIN);
+        kursyBefore.add(kurs1) ;
+        Kurs kurs2 = new Kurs();
+        kurs2.setFormaZaliczenia(FormaZaliczenia.EGZAMIN);
+        kursyBefore.add(kurs2);
+        Kurs kurs3 = new Kurs();
+        kurs3.setFormaZaliczenia(FormaZaliczenia.EGZAMIN);
+        kursyBefore.add(kurs3);
+        List<Kurs> kursyAfter = KursServiceImpl.filterKursyByFormaZaliczenia(kursyBefore,FormaZaliczenia.ZALICZENIE);
+        assertEquals(kursyAfter.size(),0);
+    }
 }

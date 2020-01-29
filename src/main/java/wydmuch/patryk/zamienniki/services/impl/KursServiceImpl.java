@@ -72,35 +72,46 @@ public class KursServiceImpl  implements KursService {
         return kursDtos;
     }
 
+
     List<Kurs> filterKursy(List<Kurs> kursy, String formaZaliczenia,
                            String[] formyZajec, Integer ects){
 
         if(ects != null) {
-            kursy = kursy.
-                    stream().
-                    filter(k -> k.getECTS() >= ects)
-                    .collect(Collectors.toList());
+            kursy = KursServiceImpl.filterKursyMinimalEcts(kursy, ects);
         }
         if(formaZaliczenia != null){
-            kursy = kursy.
-                    stream()
-                    .filter(k-> k.getFormaZaliczenia() == FormaZaliczenia.valueOf(formaZaliczenia.toUpperCase()))
-                    .collect(Collectors.toList());
+            kursy = KursServiceImpl.filterKursyByFormaZaliczenia(kursy, FormaZaliczenia.valueOf(formaZaliczenia.toUpperCase()));
         }
         if(formyZajec != null && formyZajec.length>0) {
             List<FormaZajec> formyList = Arrays.asList(formyZajec)
                     .stream()
                     .map(formString -> FormaZajec.valueOf(formString))
                     .collect(Collectors.toList());
-            kursy = kursy.
-                    stream()
-                    .filter(k -> KursServiceImpl.checkIfKursContainsFormaZajec(k,formyList))
-                    .collect(Collectors.toList());
+            kursy = KursServiceImpl.filterKursyByFormyZajec(kursy,formyList);
         }
         return kursy;
     }
 
+    public static List<Kurs> filterKursyMinimalEcts(List<Kurs> kursy, Integer ects){
+        return kursy.
+                stream().
+                filter(k -> k.getECTS() >= ects)
+                .collect(Collectors.toList());
+    }
 
+    public static List<Kurs> filterKursyByFormaZaliczenia(List<Kurs> kursy, FormaZaliczenia formaZaliczenia){
+        return kursy.
+                stream()
+                .filter(k-> k.getFormaZaliczenia() == formaZaliczenia)
+                .collect(Collectors.toList());
+    }
+
+    public static List<Kurs> filterKursyByFormyZajec(List<Kurs> kursy, List<FormaZajec> formyZajec){
+        return kursy.
+                stream()
+                .filter(k -> KursServiceImpl.checkIfKursContainsFormaZajec(k,formyZajec))
+                .collect(Collectors.toList());
+    }
 
     public static boolean checkIfKursContainsFormaZajec(Kurs kurs, List<FormaZajec> formy){
         List<FormaZajec> kursFormy = kurs.getFormaZajec();
