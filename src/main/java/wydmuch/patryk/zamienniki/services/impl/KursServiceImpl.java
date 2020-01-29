@@ -88,7 +88,10 @@ public class KursServiceImpl  implements KursService {
                     .collect(Collectors.toList());
         }
         if(formyZajec != null && formyZajec.length>0) {
-            List<String> formyList = Arrays.asList(formyZajec);
+            List<FormaZajec> formyList = Arrays.asList(formyZajec)
+                    .stream()
+                    .map(formString -> FormaZajec.valueOf(formString))
+                    .collect(Collectors.toList());
             kursy = kursy.
                     stream()
                     .filter(k -> KursServiceImpl.checkIfKursContainsFormaZajec(k,formyList))
@@ -97,13 +100,15 @@ public class KursServiceImpl  implements KursService {
         return kursy;
     }
 
-    public static boolean checkIfKursContainsFormaZajec(Kurs kurs, List<String> formy){
+
+
+    public static boolean checkIfKursContainsFormaZajec(Kurs kurs, List<FormaZajec> formy){
         List<FormaZajec> kursFormy = kurs.getFormaZajec();
         boolean result = false;
         loop:
         for(FormaZajec formaKurs: kursFormy){
-            for(String formaUser: formy){
-                if(formaKurs.equals(FormaZajec.valueOf(formaUser))){
+            for(FormaZajec formaUser: formy){
+                if(formaKurs.equals(formaUser)){
                     result = true;
                     break loop;
                 }
