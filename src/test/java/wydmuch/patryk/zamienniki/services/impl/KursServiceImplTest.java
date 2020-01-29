@@ -163,7 +163,7 @@ class KursServiceImplTest {
         assertEquals(kursyAfter.size(),1);
     }
     @Test
-    void doesFilteredKursyEmptyWithDifferentFormaZaliczenia(){
+    void doesFilteredKursyEmptyWhenDifferentFormaZaliczenia(){
         List<Kurs> kursyBefore = new ArrayList<>();
         Kurs kurs1 = new Kurs();
         kurs1.setFormaZaliczenia(FormaZaliczenia.EGZAMIN);
