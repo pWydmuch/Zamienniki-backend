@@ -1,13 +1,13 @@
 package wydmuch.patryk.zamienniki.services.impl;
 
 import org.junit.jupiter.api.Test;
-import org.mockito.exceptions.verification.SmartNullPointerException;
 import wydmuch.patryk.zamienniki.entities.Kurs;
-import wydmuch.patryk.zamienniki.entities.kursEnums.FormaZajec;
-import wydmuch.patryk.zamienniki.entities.kursEnums.FormaZaliczenia;
+import wydmuch.patryk.zamienniki.entities.enums.FormaZajec;
+import wydmuch.patryk.zamienniki.entities.enums.FormaZaliczenia;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -22,7 +22,7 @@ class KursServiceImplTest {
     void doesEmptyKursContainFormaZajec() {
         Kurs kurs = new Kurs();
         List<FormaZajec> formyZajec = new ArrayList<>(
-                Arrays.asList(FormaZajec.WYKLAD));
+                Collections.singletonList(FormaZajec.WYKLAD));
         assertThrows(NullPointerException.class, () -> {
             KursServiceImpl.checkIfKursContainsFormaZajec(kurs,formyZajec);
         });
@@ -31,9 +31,9 @@ class KursServiceImplTest {
     @Test
     void doesKursWithNoFormaZajecContainsFormaZajec(){
         Kurs kurs = new Kurs();
-        kurs.setFormaZajec(Arrays.asList());
+        kurs.setFormaZajec(Collections.emptyList());
         List<FormaZajec> formyZajec = new ArrayList<>(
-                Arrays.asList(FormaZajec.WYKLAD));
+                Collections.singletonList(FormaZajec.WYKLAD));
         boolean result = KursServiceImpl.checkIfKursContainsFormaZajec(kurs,formyZajec);
         assertFalse(result);
     }
@@ -41,9 +41,9 @@ class KursServiceImplTest {
     @Test
     void doesKursWithOneFormaZajecContainsThatFormaZajec(){
         Kurs kurs = new Kurs();
-        kurs.setFormaZajec(Arrays.asList(FormaZajec.WYKLAD));
+        kurs.setFormaZajec(Collections.singletonList(FormaZajec.WYKLAD));
         List<FormaZajec> formyZajec = new ArrayList<>(
-                Arrays.asList(FormaZajec.WYKLAD));
+                Collections.singletonList(FormaZajec.WYKLAD));
         boolean result = KursServiceImpl.checkIfKursContainsFormaZajec(kurs,formyZajec);
         assertTrue(result);
     }
@@ -59,11 +59,11 @@ class KursServiceImplTest {
         kurs.setFormaZajec(allFormy);
         List<FormaZajec> formyZajec = new ArrayList<>(allFormy);
 //        boolean result = KursServiceImpl.checkIfKursContainsFormaZajec(kurs,formyZajec);
-        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs,Arrays.asList(FormaZajec.WYKLAD)));
-        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs,Arrays.asList(FormaZajec.CWICZENIA)));
-        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs,Arrays.asList(FormaZajec.LABORATORIUM)));
-        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs,Arrays.asList(FormaZajec.PROJEKT)));
-        assertFalse(KursServiceImpl.checkIfKursContainsFormaZajec(kurs,Arrays.asList(FormaZajec.SEMINARIUM)));
+        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs, Collections.singletonList(FormaZajec.WYKLAD)));
+        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs, Collections.singletonList(FormaZajec.CWICZENIA)));
+        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs, Collections.singletonList(FormaZajec.LABORATORIUM)));
+        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs, Collections.singletonList(FormaZajec.PROJEKT)));
+        assertFalse(KursServiceImpl.checkIfKursContainsFormaZajec(kurs, Collections.singletonList(FormaZajec.SEMINARIUM)));
     }
     @Test
     void doesKursWithEveryFormaZajecContainsAllFormaZajec(){
@@ -76,11 +76,11 @@ class KursServiceImplTest {
         kurs.setFormaZajec(allFormy);
         List<FormaZajec> formyZajec = new ArrayList<>(allFormy);
 //        boolean result = KursServiceImpl.checkIfKursContainsFormaZajec(kurs,formyZajec);
-        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs,Arrays.asList(FormaZajec.WYKLAD)));
-        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs,Arrays.asList(FormaZajec.CWICZENIA)));
-        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs,Arrays.asList(FormaZajec.LABORATORIUM)));
-        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs,Arrays.asList(FormaZajec.PROJEKT)));
-        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs,Arrays.asList(FormaZajec.SEMINARIUM)));
+        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs, Collections.singletonList(FormaZajec.WYKLAD)));
+        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs, Collections.singletonList(FormaZajec.CWICZENIA)));
+        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs, Collections.singletonList(FormaZajec.LABORATORIUM)));
+        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs, Collections.singletonList(FormaZajec.PROJEKT)));
+        assertTrue(KursServiceImpl.checkIfKursContainsFormaZajec(kurs, Collections.singletonList(FormaZajec.SEMINARIUM)));
     }
 
     // dla filterKursyMinimalEcts()

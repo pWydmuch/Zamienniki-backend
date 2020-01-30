@@ -1,11 +1,6 @@
 package wydmuch.patryk.zamienniki.dto;
 
-import wydmuch.patryk.zamienniki.entities.Kurs;
-import wydmuch.patryk.zamienniki.entities.PlanStudiow;
-import wydmuch.patryk.zamienniki.entities.Przedmiot;
-import wydmuch.patryk.zamienniki.entities.kursEnums.*;
-
-import java.util.Arrays;
+import wydmuch.patryk.zamienniki.entities.enums.*;
 import java.util.List;
 
 public class KursDto {
@@ -37,29 +32,6 @@ public class KursDto {
     FormaZaliczenia formaZaliczenia;
 
     Integer ects;
-
-
-//    public KursDto(){};
-//
-//    public KursDto(Kurs kurs){
-//        Przedmiot przedmiot = kurs.getPrzedmiot();
-//        PlanStudiow planStudiow = przedmiot.getPlanStudiow();
-//        id=kurs.getId();
-//        kod=kurs.getKod();
-//        nazwa= przedmiot.getNazwa();
-//        linkKarty = przedmiot.getLinkKarty();
-//        cyklKsztalcenia=planStudiow.getCyklKsztalcenia();
-//        kierunek=planStudiow.getKierunek();
-//        trybStudiow=planStudiow.getTrybStudiow();
-//        stopienStudiow=planStudiow.getStopienStudiow();
-//        wydzial=planStudiow.getWydzial();
-//        jezykStudiow=planStudiow.getJezykStudiow();
-//        czyGrupa=kurs.getCzyGrupa();
-//        formaZajec=kurs.getFormaZajec();
-//        formaZaliczenia=kurs.getFormaZaliczenia();
-//        ects=kurs.getECTS();
-//    }
-
 
     public Long getId() {
         return id;

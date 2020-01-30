@@ -1,6 +1,6 @@
 package wydmuch.patryk.zamienniki.entities;
 
-import wydmuch.patryk.zamienniki.entities.kursEnums.StatusOpinii;
+import wydmuch.patryk.zamienniki.entities.enums.StatusOpinii;
 
 import javax.persistence.*;
 import java.util.List;

@@ -1,9 +1,9 @@
 package wydmuch.patryk.zamienniki.entities;
 
-import wydmuch.patryk.zamienniki.entities.kursEnums.JezykStudiow;
-import wydmuch.patryk.zamienniki.entities.kursEnums.StopienStudiow;
-import wydmuch.patryk.zamienniki.entities.kursEnums.TrybStudiow;
-import wydmuch.patryk.zamienniki.entities.kursEnums.Wydzial;
+import wydmuch.patryk.zamienniki.entities.enums.JezykStudiow;
+import wydmuch.patryk.zamienniki.entities.enums.StopienStudiow;
+import wydmuch.patryk.zamienniki.entities.enums.TrybStudiow;
+import wydmuch.patryk.zamienniki.entities.enums.Wydzial;
 
 import javax.persistence.*;
 import java.util.List;

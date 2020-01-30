@@ -1,4 +1,4 @@
-package wydmuch.patryk.zamienniki.entities.kursEnums;
+package wydmuch.patryk.zamienniki.entities.enums;
 
 public enum StatusOpinii {
     NIEROZPATRZONE,NEGATYWNA,POZYTYWNA

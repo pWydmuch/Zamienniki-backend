@@ -3,7 +3,6 @@ package wydmuch.patryk.zamienniki.controllers;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 import wydmuch.patryk.zamienniki.dto.PodanieDto;
-import wydmuch.patryk.zamienniki.entities.Podanie;
 import wydmuch.patryk.zamienniki.services.PodanieService;
 
 

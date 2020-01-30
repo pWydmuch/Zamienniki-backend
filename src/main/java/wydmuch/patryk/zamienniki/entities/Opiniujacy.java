@@ -1,7 +1,7 @@
 package wydmuch.patryk.zamienniki.entities;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import wydmuch.patryk.zamienniki.entities.kursEnums.TytulNaukowy;
+import wydmuch.patryk.zamienniki.entities.enums.TytulNaukowy;
 
 import javax.persistence.*;
 import java.util.List;

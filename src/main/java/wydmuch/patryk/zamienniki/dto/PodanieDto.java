@@ -1,14 +1,9 @@
 package wydmuch.patryk.zamienniki.dto;
 
-import wydmuch.patryk.zamienniki.entities.Kurs;
 import wydmuch.patryk.zamienniki.entities.Opiniujacy;
-import wydmuch.patryk.zamienniki.entities.Podanie;
 import wydmuch.patryk.zamienniki.entities.Student;
-import wydmuch.patryk.zamienniki.entities.kursEnums.StatusOpinii;
-
-import javax.persistence.*;
+import wydmuch.patryk.zamienniki.entities.enums.StatusOpinii;
 import java.util.List;
-import java.util.stream.Collectors;
 
 public class PodanieDto {
 
@@ -28,18 +23,6 @@ public class PodanieDto {
 
     private Student student;
 
-//    public PodanieDto(){}
-//
-//    public PodanieDto(Podanie podanie){
-//        id=podanie.getId();
-//        zamieniany=new KursDto(podanie.getZamieniany());
-//        zamieniany=KursMapper.
-//        zamienniki = podanie.getZamienniki().stream().map(KursDto::new).collect(Collectors.toList());
-//        opiniujacy=podanie.getOpiniujacy();
-//        status=podanie.getStatus();
-//        uzasadnieniePodania = podanie.getUzasadnieniePodania();
-//
-//    }
 
     public Long getId() {
         return id;

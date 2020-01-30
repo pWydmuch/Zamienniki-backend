@@ -6,8 +6,20 @@ import wydmuch.patryk.zamienniki.entities.Podanie;
 import java.util.List;
 import java.util.stream.Collectors;
 
+
+/**
+ * Klasa służąca do mapowania podania na podanieDto i odwrotnie
+ * @author Patryk Wydmuch
+ * @version 1.1.1
+ */
+
 public class PodanieMapper {
 
+
+    /**Metoda mapująca dane podanie na podanieDto
+     * @param podanie Podanie które chcemy zmapować na podanieDto
+     * @return PodanieDto powstałe na bazie podanego podania
+     */
     public static PodanieDto mapPodanieToPodanieDto(Podanie podanie){
         PodanieDto podanieDto = new PodanieDto();
         podanieDto.setId(podanie.getId());
@@ -24,6 +36,11 @@ public class PodanieMapper {
         podanieDto.setStudent(podanie.getStudent());
         return podanieDto;
     }
+
+    /**Metoda mapująca dane podanieDto na podanie
+     * @param podanieDto PodanieDto które chcemy zmapować na podanie
+     * @return Podanie powstałe na bazie podanego podaniaDto
+     */
     public static Podanie mapPodanieDtoToPodanie(PodanieDto podanieDto){
         Podanie podanie = new Podanie();
         podanie.setId(podanieDto.getId());

@@ -21,12 +21,12 @@ public class KursController {
 
 
     @GetMapping("kursy")
-    List<KursDto> getKursySearch(@RequestParam(required = false) String  trybStudiow,
-                                 @RequestParam(required = false) String  stopienStudiow,
+    List<KursDto> getKursySearch(@RequestParam(required = true) String  trybStudiow,
+                                 @RequestParam(required = true) String  stopienStudiow,
                                  @RequestParam(required = false) String  wydzial,
                                  @RequestParam(required = false) String  jezykStudiow,
                                  @RequestParam(required = false, name = "formaZajec") String[]  formyZajec,
-                                 @RequestParam(required = false) String  formaZaliczenia,
+                                 @RequestParam(required = true) String  formaZaliczenia,
                                  @RequestParam(required = false) Integer ects,
                                  @RequestParam(required = false) String  kierunek,
                                  @RequestParam(required = false) String  cyklKsztalcenia

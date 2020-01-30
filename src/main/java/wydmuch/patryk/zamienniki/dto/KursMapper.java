@@ -4,8 +4,19 @@ import wydmuch.patryk.zamienniki.entities.Kurs;
 import wydmuch.patryk.zamienniki.entities.PlanStudiow;
 import wydmuch.patryk.zamienniki.entities.Przedmiot;
 
+/**
+ * Klasa służąca do mapowania kursu na kursDto i odwrotnie
+ * @author Patryk Wydmuch
+ * @version 1.1.1
+ */
+
 public class KursMapper {
 
+
+    /**Metoda mapująca podany kurs na kursDto
+     * @param kurs Kurs który chcemy zmapować na KursDto
+     * @return KursDto powstały na bazie podanego kursu
+     */
     public static KursDto mapKursToKursDto(Kurs kurs){
         KursDto kursDto = new KursDto();
         Przedmiot przedmiot = kurs.getPrzedmiot();
@@ -27,6 +38,11 @@ public class KursMapper {
 
         return kursDto;
     }
+
+    /**Metoda mapująca podany kursDto na kurs
+     * @param kursDto KursDto który chcemy zmapować na Kurs
+     * @return Kurs powstały na bazie podanego kursuDto
+     */
     public static Kurs mapKursDtoToKurs(KursDto kursDto){
         Kurs kurs = new Kurs();
         kurs.setId(kursDto.getId());

@@ -9,7 +9,7 @@ import java.util.List;
 public interface KursService {
 
 
-   List<Kurs> getKursy();
+
    KursDto getKurs(Long id);
    List<KursDto> getKursySearch(String trybStudiow,
                                 String stopienStudiow,

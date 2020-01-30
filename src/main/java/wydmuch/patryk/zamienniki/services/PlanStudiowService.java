@@ -8,7 +8,7 @@ public interface PlanStudiowService {
 
     List<String> getKierunki();
     List<String> getCykle();
-    public List<PlanStudiow> getPlany(String trybStudiow,
+    List<PlanStudiow> getPlany(String trybStudiow,
                                       String stopienStudiow,
                                       String wydzial,
                                       String jezykStudiow,

@@ -4,14 +4,20 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
 import wydmuch.patryk.zamienniki.entities.PlanStudiow;
-import wydmuch.patryk.zamienniki.entities.kursEnums.JezykStudiow;
-import wydmuch.patryk.zamienniki.entities.kursEnums.StopienStudiow;
-import wydmuch.patryk.zamienniki.entities.kursEnums.TrybStudiow;
-import wydmuch.patryk.zamienniki.entities.kursEnums.Wydzial;
+import wydmuch.patryk.zamienniki.entities.enums.JezykStudiow;
+import wydmuch.patryk.zamienniki.entities.enums.StopienStudiow;
+import wydmuch.patryk.zamienniki.entities.enums.TrybStudiow;
+import wydmuch.patryk.zamienniki.entities.enums.Wydzial;
 import wydmuch.patryk.zamienniki.repositories.PlanStudiowRepository;
 import wydmuch.patryk.zamienniki.services.PlanStudiowService;
 
 import java.util.List;
+
+/**
+ * Klasa służąca do pozyskiwaniu informacji na temat planów studiów
+ * @author Patryk Wydmuch
+ * @version 1.1.1
+ */
 
 @Service
 public class PlanStudiowServiceImpl implements PlanStudiowService {
@@ -24,6 +30,16 @@ public class PlanStudiowServiceImpl implements PlanStudiowService {
         this.planStudiowRepository = planStudiowRepository;
     }
 
+    /**Metoda wyszukująca listę planów studiów na podstawie okreslonych kryteriów. Jeśli jakiś parametr
+     * ma wartość null, oznacza to, że jest opcjonalny i nie będzie brany pod uwagę podczas wyszukiwania
+     * @param trybStudiow Tryb studiów w ramach którego mają być prowadzone szukane kursy np "Stacjonarne"
+     * @param stopienStudiow Stopień studiów w ramach którego mają być prowadzone szukane kursy np "Pierwszy"
+     * @param wydzial Wydział na jakim mają odbywać się zajęcia szukanych kursów np "W8"
+     * @param jezykStudiow Język w jakim mają odbywać się zajęcia szukanych kursów  "Polski"/"Angielski"
+     * @param kierunek Kierunek studiów w ramach którego są umieszczone szukane kursy
+     * @param cyklKsztalcenia Pierwszy rok akademicki od którego został ustalony plan studiów szukanych kursów np "2017/20018"
+     * @return Lista Planów studiów zawierająca dane, które spełniają kryteria
+     */
     @Override
     public List<PlanStudiow> getPlany(String trybStudiow,
                                        String stopienStudiow,
@@ -44,11 +60,17 @@ public class PlanStudiowServiceImpl implements PlanStudiowService {
         return plany;
     }
 
+    /** Metoda zwracająca wszystkie obecnie prowadzone kierunki studiów
+     * @return wszystkie obecnie prowadzone kierunki studiów
+     */
     @Override
     public List<String> getKierunki() {
         return planStudiowRepository.findKierunki();
     }
 
+    /** Metoda zwracająca wszystkie cykle kształcenia, które nie zostały jeszcze ukończone
+     * @return wszystkie cykle kształcenia, które nie zostały jeszcze ukończone
+     */
     @Override
     public List<String> getCykle() {
         return planStudiowRepository.findCykle();
