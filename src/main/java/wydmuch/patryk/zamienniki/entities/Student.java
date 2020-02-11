@@ -7,14 +7,13 @@ import java.util.Set;
 
 @Entity
 @Table(name = "studenci")
-public class Student {
+public class Student  extends Osoba{
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long nr_index;
 
-    private String imie;
-    private String nazwisko;
+
 
     @OneToMany(mappedBy = "student")
     @JsonIgnore
@@ -28,21 +27,6 @@ public class Student {
         this.nr_index = nr_index;
     }
 
-    public String getImie() {
-        return imie;
-    }
-
-    public void setImie(String imie) {
-        this.imie = imie;
-    }
-
-    public String getNazwisko() {
-        return nazwisko;
-    }
-
-    public void setNazwisko(String nazwisko) {
-        this.nazwisko = nazwisko;
-    }
 
     public Set<Podanie> getPodania() {
         return podania;

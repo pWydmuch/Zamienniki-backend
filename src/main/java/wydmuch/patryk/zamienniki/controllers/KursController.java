@@ -20,13 +20,16 @@ public class KursController {
     }
 
 
+    //TODO obsługa błędow
+    //TODO zmienic na reqiured = true
+
     @GetMapping("kursy")
-    List<KursDto> getKursySearch(@RequestParam(required = true) String  trybStudiow,
-                                 @RequestParam(required = true) String  stopienStudiow,
+    List<KursDto> getKursySearch(@RequestParam(required = false) String  trybStudiow,
+                                 @RequestParam(required = false) String  stopienStudiow,
                                  @RequestParam(required = false) String  wydzial,
                                  @RequestParam(required = false) String  jezykStudiow,
                                  @RequestParam(required = false, name = "formaZajec") String[]  formyZajec,
-                                 @RequestParam(required = true) String  formaZaliczenia,
+                                 @RequestParam(required = false) String  formaZaliczenia,
                                  @RequestParam(required = false) Integer ects,
                                  @RequestParam(required = false) String  kierunek,
                                  @RequestParam(required = false) String  cyklKsztalcenia
