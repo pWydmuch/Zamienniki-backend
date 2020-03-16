@@ -3,6 +3,8 @@ package wydmuch.patryk.zamienniki.services.impl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.stereotype.Service;
+import wydmuch.patryk.zamienniki.dto.PlanInfoDto;
+import wydmuch.patryk.zamienniki.dto.PlanInfoMapper;
 import wydmuch.patryk.zamienniki.entities.PlanStudiow;
 import wydmuch.patryk.zamienniki.entities.enums.JezykStudiow;
 import wydmuch.patryk.zamienniki.entities.enums.StopienStudiow;
@@ -60,19 +62,14 @@ public class PlanStudiowServiceImpl implements PlanStudiowService {
         return plany;
     }
 
-    /** Metoda zwracająca wszystkie obecnie prowadzone kierunki studiów
-     * @return wszystkie obecnie prowadzone kierunki studiów
+    /** Metoda wyszukuje wszystkie cykle kształcenia, które nie zostały jeszcze ukończone oraz wszystkie obecnie prowadzone kierunki studiów
+     * @return Obiekt PlanInfo zawierający cykle kształcenia i kierunki studiów, o ktorych mowa w opisie metody
      */
     @Override
-    public List<String> getKierunki() {
-        return planStudiowRepository.findKierunki();
-    }
-
-    /** Metoda zwracająca wszystkie cykle kształcenia, które nie zostały jeszcze ukończone
-     * @return wszystkie cykle kształcenia, które nie zostały jeszcze ukończone
-     */
-    @Override
-    public List<String> getCykle() {
-        return planStudiowRepository.findCykle();
+    public PlanInfoDto getPlanInfo() {
+        List<String> listaKierunkow = planStudiowRepository.findKierunki();
+        List<String> listaCykli = planStudiowRepository.findCykle();
+        PlanInfoDto planInfoDto = PlanInfoMapper.mapToPlanInfo(listaKierunkow,listaCykli);
+        return planInfoDto;
     }
 }
