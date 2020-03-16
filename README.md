@@ -18,7 +18,6 @@ Wykorzystano:
     * Spring Boot
     * Spring Data (Query By Example)
     * Hibernate
-    * Google Storage
     * MySql
     * Travis CI
     
