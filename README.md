@@ -10,7 +10,9 @@ Backend jest wdrożony na platformie Heroku. Korzystam z wersji darmowej, która
 
 [Tu można zobaczyć aplikację w akcji](http://zamienniki2.surge.sh/)
 
-[Link do kodu frontendu](https://github.com/pWydmuch/zamienniki-frontend)
+Niestety nie działa wyświetlanie kart predmiotów, ponieważ przechowywałem je na Google Storage, a wygasło mi tam konto
+
+[Kodu frontendu](https://github.com/pWydmuch/zamienniki-frontend)
 
 Wykorzystano:
 * Backend:
